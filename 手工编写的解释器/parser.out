@@ -1,0 +1,302 @@
+Created by PLY version 3.11 (http://www.dabeaz.com/ply)
+
+Grammar
+
+Rule 0     S' -> program
+Rule 1     program -> statement_list
+Rule 2     statement_list -> statement_list statement
+Rule 3     statement_list -> statement
+Rule 4     statement -> draw_statement
+Rule 5     statement -> move_statement
+Rule 6     statement -> color_statement
+Rule 7     draw_statement -> DRAW LPAREN number COMMA number RPAREN LPAREN number COMMA number RPAREN
+Rule 8     move_statement -> MOVE LPAREN number COMMA number RPAREN
+Rule 9     color_statement -> COLOR COLOR_NAME
+Rule 10    number -> NUMBER
+
+Terminals, with rules where they appear
+
+COLOR                : 9
+COLOR_NAME           : 9
+COMMA                : 7 7 8
+DRAW                 : 7
+LPAREN               : 7 7 8
+MOVE                 : 8
+NUMBER               : 10
+RPAREN               : 7 7 8
+error                : 
+
+Nonterminals, with rules where they appear
+
+color_statement      : 6
+draw_statement       : 4
+move_statement       : 5
+number               : 7 7 7 7 8 8
+program              : 0
+statement            : 2 3
+statement_list       : 1 2
+
+Parsing method: LALR
+
+state 0
+
+    (0) S' -> . program
+    (1) program -> . statement_list
+    (2) statement_list -> . statement_list statement
+    (3) statement_list -> . statement
+    (4) statement -> . draw_statement
+    (5) statement -> . move_statement
+    (6) statement -> . color_statement
+    (7) draw_statement -> . DRAW LPAREN number COMMA number RPAREN LPAREN number COMMA number RPAREN
+    (8) move_statement -> . MOVE LPAREN number COMMA number RPAREN
+    (9) color_statement -> . COLOR COLOR_NAME
+
+    DRAW            shift and go to state 7
+    MOVE            shift and go to state 8
+    COLOR           shift and go to state 9
+
+    program                        shift and go to state 1
+    statement_list                 shift and go to state 2
+    statement                      shift and go to state 3
+    draw_statement                 shift and go to state 4
+    move_statement                 shift and go to state 5
+    color_statement                shift and go to state 6
+
+state 1
+
+    (0) S' -> program .
+
+
+
+state 2
+
+    (1) program -> statement_list .
+    (2) statement_list -> statement_list . statement
+    (4) statement -> . draw_statement
+    (5) statement -> . move_statement
+    (6) statement -> . color_statement
+    (7) draw_statement -> . DRAW LPAREN number COMMA number RPAREN LPAREN number COMMA number RPAREN
+    (8) move_statement -> . MOVE LPAREN number COMMA number RPAREN
+    (9) color_statement -> . COLOR COLOR_NAME
+
+    $end            reduce using rule 1 (program -> statement_list .)
+    DRAW            shift and go to state 7
+    MOVE            shift and go to state 8
+    COLOR           shift and go to state 9
+
+    statement                      shift and go to state 10
+    draw_statement                 shift and go to state 4
+    move_statement                 shift and go to state 5
+    color_statement                shift and go to state 6
+
+state 3
+
+    (3) statement_list -> statement .
+
+    DRAW            reduce using rule 3 (statement_list -> statement .)
+    MOVE            reduce using rule 3 (statement_list -> statement .)
+    COLOR           reduce using rule 3 (statement_list -> statement .)
+    $end            reduce using rule 3 (statement_list -> statement .)
+
+
+state 4
+
+    (4) statement -> draw_statement .
+
+    DRAW            reduce using rule 4 (statement -> draw_statement .)
+    MOVE            reduce using rule 4 (statement -> draw_statement .)
+    COLOR           reduce using rule 4 (statement -> draw_statement .)
+    $end            reduce using rule 4 (statement -> draw_statement .)
+
+
+state 5
+
+    (5) statement -> move_statement .
+
+    DRAW            reduce using rule 5 (statement -> move_statement .)
+    MOVE            reduce using rule 5 (statement -> move_statement .)
+    COLOR           reduce using rule 5 (statement -> move_statement .)
+    $end            reduce using rule 5 (statement -> move_statement .)
+
+
+state 6
+
+    (6) statement -> color_statement .
+
+    DRAW            reduce using rule 6 (statement -> color_statement .)
+    MOVE            reduce using rule 6 (statement -> color_statement .)
+    COLOR           reduce using rule 6 (statement -> color_statement .)
+    $end            reduce using rule 6 (statement -> color_statement .)
+
+
+state 7
+
+    (7) draw_statement -> DRAW . LPAREN number COMMA number RPAREN LPAREN number COMMA number RPAREN
+
+    LPAREN          shift and go to state 11
+
+
+state 8
+
+    (8) move_statement -> MOVE . LPAREN number COMMA number RPAREN
+
+    LPAREN          shift and go to state 12
+
+
+state 9
+
+    (9) color_statement -> COLOR . COLOR_NAME
+
+    COLOR_NAME      shift and go to state 13
+
+
+state 10
+
+    (2) statement_list -> statement_list statement .
+
+    DRAW            reduce using rule 2 (statement_list -> statement_list statement .)
+    MOVE            reduce using rule 2 (statement_list -> statement_list statement .)
+    COLOR           reduce using rule 2 (statement_list -> statement_list statement .)
+    $end            reduce using rule 2 (statement_list -> statement_list statement .)
+
+
+state 11
+
+    (7) draw_statement -> DRAW LPAREN . number COMMA number RPAREN LPAREN number COMMA number RPAREN
+    (10) number -> . NUMBER
+
+    NUMBER          shift and go to state 15
+
+    number                         shift and go to state 14
+
+state 12
+
+    (8) move_statement -> MOVE LPAREN . number COMMA number RPAREN
+    (10) number -> . NUMBER
+
+    NUMBER          shift and go to state 15
+
+    number                         shift and go to state 16
+
+state 13
+
+    (9) color_statement -> COLOR COLOR_NAME .
+
+    DRAW            reduce using rule 9 (color_statement -> COLOR COLOR_NAME .)
+    MOVE            reduce using rule 9 (color_statement -> COLOR COLOR_NAME .)
+    COLOR           reduce using rule 9 (color_statement -> COLOR COLOR_NAME .)
+    $end            reduce using rule 9 (color_statement -> COLOR COLOR_NAME .)
+
+
+state 14
+
+    (7) draw_statement -> DRAW LPAREN number . COMMA number RPAREN LPAREN number COMMA number RPAREN
+
+    COMMA           shift and go to state 17
+
+
+state 15
+
+    (10) number -> NUMBER .
+
+    COMMA           reduce using rule 10 (number -> NUMBER .)
+    RPAREN          reduce using rule 10 (number -> NUMBER .)
+
+
+state 16
+
+    (8) move_statement -> MOVE LPAREN number . COMMA number RPAREN
+
+    COMMA           shift and go to state 18
+
+
+state 17
+
+    (7) draw_statement -> DRAW LPAREN number COMMA . number RPAREN LPAREN number COMMA number RPAREN
+    (10) number -> . NUMBER
+
+    NUMBER          shift and go to state 15
+
+    number                         shift and go to state 19
+
+state 18
+
+    (8) move_statement -> MOVE LPAREN number COMMA . number RPAREN
+    (10) number -> . NUMBER
+
+    NUMBER          shift and go to state 15
+
+    number                         shift and go to state 20
+
+state 19
+
+    (7) draw_statement -> DRAW LPAREN number COMMA number . RPAREN LPAREN number COMMA number RPAREN
+
+    RPAREN          shift and go to state 21
+
+
+state 20
+
+    (8) move_statement -> MOVE LPAREN number COMMA number . RPAREN
+
+    RPAREN          shift and go to state 22
+
+
+state 21
+
+    (7) draw_statement -> DRAW LPAREN number COMMA number RPAREN . LPAREN number COMMA number RPAREN
+
+    LPAREN          shift and go to state 23
+
+
+state 22
+
+    (8) move_statement -> MOVE LPAREN number COMMA number RPAREN .
+
+    DRAW            reduce using rule 8 (move_statement -> MOVE LPAREN number COMMA number RPAREN .)
+    MOVE            reduce using rule 8 (move_statement -> MOVE LPAREN number COMMA number RPAREN .)
+    COLOR           reduce using rule 8 (move_statement -> MOVE LPAREN number COMMA number RPAREN .)
+    $end            reduce using rule 8 (move_statement -> MOVE LPAREN number COMMA number RPAREN .)
+
+
+state 23
+
+    (7) draw_statement -> DRAW LPAREN number COMMA number RPAREN LPAREN . number COMMA number RPAREN
+    (10) number -> . NUMBER
+
+    NUMBER          shift and go to state 15
+
+    number                         shift and go to state 24
+
+state 24
+
+    (7) draw_statement -> DRAW LPAREN number COMMA number RPAREN LPAREN number . COMMA number RPAREN
+
+    COMMA           shift and go to state 25
+
+
+state 25
+
+    (7) draw_statement -> DRAW LPAREN number COMMA number RPAREN LPAREN number COMMA . number RPAREN
+    (10) number -> . NUMBER
+
+    NUMBER          shift and go to state 15
+
+    number                         shift and go to state 26
+
+state 26
+
+    (7) draw_statement -> DRAW LPAREN number COMMA number RPAREN LPAREN number COMMA number . RPAREN
+
+    RPAREN          shift and go to state 27
+
+
+state 27
+
+    (7) draw_statement -> DRAW LPAREN number COMMA number RPAREN LPAREN number COMMA number RPAREN .
+
+    DRAW            reduce using rule 7 (draw_statement -> DRAW LPAREN number COMMA number RPAREN LPAREN number COMMA number RPAREN .)
+    MOVE            reduce using rule 7 (draw_statement -> DRAW LPAREN number COMMA number RPAREN LPAREN number COMMA number RPAREN .)
+    COLOR           reduce using rule 7 (draw_statement -> DRAW LPAREN number COMMA number RPAREN LPAREN number COMMA number RPAREN .)
+    $end            reduce using rule 7 (draw_statement -> DRAW LPAREN number COMMA number RPAREN LPAREN number COMMA number RPAREN .)
+
